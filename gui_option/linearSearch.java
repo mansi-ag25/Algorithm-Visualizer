@@ -1,6 +1,6 @@
 package gui_option;
 import javax.swing.*;
-import src.AnimatedLinearSearch;
+import src.linearSearchBar;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -8,14 +8,16 @@ public class linearSearch extends JFrame{
     private JTextField arrayField;
     private JTextField searchField;
     private JButton searchButton;
+    private JFrame parFrame;
+   
    
 
-    public linearSearch() {
+    public linearSearch(JFrame parentFrame) {
         // Set up the JFrame
         setTitle("Linear Search");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
-
+        parentFrame.setVisible(false); 
         // Create the text fields
         arrayField = new JTextField(15);
         searchField = new JTextField(10);
@@ -30,7 +32,7 @@ public class linearSearch extends JFrame{
                 String searchElementText = searchField.getText();
                 if(arrayText.isEmpty() || searchElementText.isEmpty()){
                      JOptionPane.showMessageDialog(linearSearch.this,
-                        "Array can't be empty");
+                        "Array or search element can't be empty");
                 }
                 // Convert arrayText to integer array
                 String[] arrayItems = arrayText.split(",");
@@ -43,8 +45,9 @@ public class linearSearch extends JFrame{
                 int searchElement = Integer.parseInt(searchElementText);
 
                 // Call the linear search method 
-                AnimatedLinearSearch obj=new AnimatedLinearSearch(array, searchElement);
-                obj.setVisible(true);               
+                linearSearchBar obj=new linearSearchBar(array, searchElement,parFrame);
+                obj.setVisible(true);  
+                            
             }
         });
 
@@ -58,5 +61,6 @@ public class linearSearch extends JFrame{
         // Set the JFrame size and make it visible
         setSize(300, 200);
         setVisible(true);
+        parFrame=this;
     }
 }

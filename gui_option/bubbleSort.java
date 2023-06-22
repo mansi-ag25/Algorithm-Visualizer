@@ -1,19 +1,20 @@
 package gui_option;
 import javax.swing.*;
-import src.BubbleSortVisualization;
+import src.bubbleSortBar;
 import java.awt.*;
 import java.awt.event.*;
 
 public class bubbleSort extends JFrame{
      private JTextField arrayField;
     private JButton sortButton;
+    private JFrame parFrame;
 
-    public bubbleSort() {
+    public bubbleSort(JFrame parentFrame) {
         // Set up the JFrame
         setTitle("Bubble Sort");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
-
+        parentFrame.setVisible(false);
         // Create the text field
         arrayField = new JTextField(15);
         sortButton = new JButton("Sort");
@@ -36,7 +37,7 @@ public class bubbleSort extends JFrame{
                 }
 
                 //call the bubble sort method 
-                BubbleSortVisualization visualization = new BubbleSortVisualization(array);
+                bubbleSortBar visualization = new bubbleSortBar(array,parFrame);
                 visualization.setVisible(true);
                 visualization.startSorting();
                
@@ -51,5 +52,6 @@ public class bubbleSort extends JFrame{
         // Set the JFrame size and make it visible
         setSize(300, 200);
         setVisible(true);
+        parFrame=this;
     }
 }

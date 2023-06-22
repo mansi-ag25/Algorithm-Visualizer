@@ -1,9 +1,6 @@
 package gui_option;
-
 import javax.swing.*;
-
-import src.QuickSortVisualization;
-
+import src.quickSortBar;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -11,13 +8,14 @@ import java.awt.event.*;
 public class quickSortGui extends JFrame{
     private JTextField arrayField;
     private JButton sortButton;
+    private JFrame parFrame;
 
-    public quickSortGui() {
+    public quickSortGui(JFrame parentFrame) {
         // Set up the JFrame
         setTitle("Quick Sort");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
-
+        parentFrame.setVisible(false);
         // Create the text fields
         arrayField = new JTextField(15);
         sortButton = new JButton("Sort");
@@ -36,8 +34,8 @@ public class quickSortGui extends JFrame{
                 for (int i = 0; i < arrayItems.length; i++) {
                     array[i] = Integer.parseInt(arrayItems[i]);
                 }
-                QuickSortVisualization frame = new QuickSortVisualization(array);
-        frame.quickSort();
+                quickSortBar frame = new quickSortBar(array,parFrame);
+       // frame.quickSort();
                 frame.setVisible(true);
             }
         });
@@ -51,5 +49,6 @@ public class quickSortGui extends JFrame{
         // Set the JFrame size and make it visible
         setSize(300, 200);
         setVisible(true);
+        parFrame=this;
     } 
 }

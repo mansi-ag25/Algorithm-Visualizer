@@ -1,7 +1,7 @@
 package gui_option;
 import javax.swing.*;
 
-import src.BarGraphSelectionSort;
+import src.selectionSortBar;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,13 +9,14 @@ import java.awt.event.ActionListener;
 public class selectionSort extends JFrame{
     private JTextField arrayField;
     private JButton sortButton;
+    private JFrame parFrame;
 
-    public selectionSort() {
+    public selectionSort(JFrame parentFrame) {
         // Set up the JFrame
         setTitle("Selection Sort");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
-
+        parentFrame.setVisible(false);
         // Create the text fields
         arrayField = new JTextField(15);
         sortButton = new JButton("Sort");
@@ -35,7 +36,7 @@ public class selectionSort extends JFrame{
                     array[i] = Integer.parseInt(arrayItems[i]);
                 }
 
-                BarGraphSelectionSort obj=new BarGraphSelectionSort(array);
+                selectionSortBar obj=new selectionSortBar(array,parFrame);
                 obj.setVisible(true);               
                 
             }
@@ -49,5 +50,6 @@ public class selectionSort extends JFrame{
         // Set the JFrame size and make it visible
         setSize(300, 200);
         setVisible(true);
+        parFrame=this;
     }
 }

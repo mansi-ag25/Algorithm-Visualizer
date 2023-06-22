@@ -6,7 +6,8 @@ import java.awt.*;
 public class BubbleSortPanel extends JPanel {
     private int currentIndex = -1; // Index currently being compared during sorting
     private int nextIndex = -1; // Next index to be compared during sorting
-    private int animationSpeed = 1000; // Animation speed in milliseconds
+    private int animationSpeed = 500; // Animation speed in milliseconds
+    private static final int BAR_WIDTH = 30;
     private int[] array;
     public BubbleSortPanel(int[] array) {
         setBackground(Color.WHITE);
@@ -40,13 +41,16 @@ public class BubbleSortPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+         Graphics2D g2d = (Graphics2D) g;
 
-        int barWidth = getWidth() / array.length;
-        int barHeight = getHeight() / (array.length + 1);
+           int x = (getWidth() - array.length * BAR_WIDTH) / 2;
+            int y = getHeight() / 2;
+
+        // int barWidth = getWidth() / array.length;
+        // int barHeight = getHeight() / (array.length + 1);
 
         for (int i = 0; i < array.length; i++) {
-            int x = i * barWidth;
-            int y = getHeight() - array[i] * barHeight;
+            int barHeight = array[i] * 10;
 
             if (i == currentIndex || i == nextIndex) {
                 g.setColor(Color.gray); // Highlight the comparing bars
@@ -54,7 +58,12 @@ public class BubbleSortPanel extends JPanel {
                 g.setColor(Color.yellow);
             }
 
-            g.fillRect(x, y, barWidth, array[i] * barHeight);
+            //g.fillRect(x, y, barWidth, array[i] * barHeight);
+            g2d.fillRect(x, y - barHeight, BAR_WIDTH, barHeight);
+                g2d.setColor(Color.BLACK);
+                g2d.drawRect(x, y - barHeight, BAR_WIDTH, barHeight);
+              g.drawString(Integer.toString(array[i]), x, y - barHeight - 5);
+                x += BAR_WIDTH;
         }
     }
 }

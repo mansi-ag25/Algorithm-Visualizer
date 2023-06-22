@@ -1,6 +1,6 @@
 package gui_option;
 import javax.swing.*;
-import src.BinarySearchBarGraph;
+import src.binarySearchBar;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -9,8 +9,9 @@ public class binarySearch extends JFrame{
      private JTextField arrayField;
     private JTextField searchField;
     private JButton searchButton;
+    private JFrame parFrame;
 
-    public binarySearch() {
+    public binarySearch(JFrame parentFrame) {
         // Set up the JFrame
         setTitle("Binary Search");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -19,6 +20,7 @@ public class binarySearch extends JFrame{
         // Create the text fields
         arrayField = new JTextField(15);
         searchField = new JTextField(10);
+        parentFrame.setVisible(false);
 
         // Create the button for search
         searchButton = new JButton("Search");
@@ -48,7 +50,7 @@ public class binarySearch extends JFrame{
                 int searchElement = Integer.parseInt(searchElementText);
 
                 //creates an object to implement binary search 
-                BinarySearchBarGraph obj=new BinarySearchBarGraph(array, searchElement,0,array.length-1);
+                binarySearchBar obj=new binarySearchBar(array, searchElement,0,array.length-1,parFrame);
                 obj.setVisible(true); 
                             
                 
@@ -65,5 +67,6 @@ public class binarySearch extends JFrame{
         // Set the JFrame size and make it visible
         setSize(300, 200);
         setVisible(true);
+        parFrame=this;
     }
 }
